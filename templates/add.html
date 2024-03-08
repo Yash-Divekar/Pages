@@ -1,0 +1,31 @@
+{% extends "index.html" %}
+
+{% block content2 %}
+<div class="alert alert-sucess alert-dismissible fade show" role="alert" style="background-color: #fff3cd;margin-top: 3rem;">
+  <strong>Enter Details of the book to be added to Library </strong><br>
+    <form action="{{ url_for('added')}}" method="post">
+      <div class="row">
+    <div class="col-md-4">
+      <input class="form-control" type="text" name="booknum" id="booknum" placeholder="Enter Book number" value="{{request.form.booknum}}" style="margin-bottom: 1rem;">
+    </div>
+    <div class="col-md-4">
+      <input class="form-control" type="text" name="bookname" id="bookname" placeholder="Enter Name of the book" value="{{request.form.bookname}}" style="margin-bottom: 1rem;">
+    </div>
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-9">
+          <input type="text" class="form-control" name="bookcount" id="bookcount" placeholder="Quantity" value="{{request.form.bookcount}}" style="margin-bottom: 1rem;">
+        </div>
+        <div class="col-md-3">
+          <button type="submit" class="btn btn-outline-success my-2 my-sm-0" style="margin-bottom: 1rem;">Add</button>
+        </div>
+      </div>
+       </div>
+    </div>
+  </form>
+  
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "index.html" %} 
+
+{% block content2 %} 
+{% if sucess %}
+<div class="alert alert-sucess alert-dismissible fade show" role="alert">
+  <strong>Sucessfull</strong>Thanks for Returing the book.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% else %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Failed</strong> Somthing went wrong
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endif %} 
+{% endblock %} 
+{% block content3 %}
+<div style="margin-top: 5rem">
+  <div class="row" style="margin: 2rem auto">
+    {% for key,value in mydict.items() %} 
+    {% for key2,value2 in value.items() %}
+    <div class="col-md-4">
+      <div class="card text-white bg-dark mb-3" style="max-width: 30rem">
+        <div class="card-header"><b>Book Number: {{key2}}</b></div>
+        <div class="card-body">
+          <h5 class="card-title">{{value2['name']}}</h5>
+          <form action="{{ url_for('return_book')}}" method="post">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-right: 1rem" name="return" value="{{key2}}">
+              Return
+            </button>
+          </form>
+          <p class="card-text">Quantity:- {{value2['count']}} copies left</p>
+          <label>
+            <input id="more" type="checkbox">Read more
+            <div id="content">
+              {{value2['disc']}}
+            </div>
+          </label>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}
+        
